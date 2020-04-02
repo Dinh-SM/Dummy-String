@@ -17,14 +17,6 @@ class OurString
         OurString operator=(const string&);
         OurString operator+(const string&, char c);
 
-        // Student C
-        ~OurString();
-        size_t capacity();
-        bool empty();
-        void reserve(size_t n = 0);
-        OurString operator=(const char* s);
-        OurString operator+(const string&, const string&);
-
     protected:
         char* string_;
 };
