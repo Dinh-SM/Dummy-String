@@ -1,0 +1,2 @@
+# BigLabString
+Dummy String implementation
