@@ -14,50 +14,47 @@ OurString::OurString()
 // Student A
 OurString::OurString(OurString &string)
 {
-
+	;
 };
 
 char* OurString::c_str()
 {
-
+	return string_;
 };
 
 size_t OurString::size()
 {
-
+	;
 };
 
 void OurString::clear()
 {
-
+	;
 };
 
 OurString OurString::operator=(char c)
 {
-
+	;
 };
 
-OurString OurString::operator+(const string&, const char* s)
+OurString OurString::operator+(const char* s)
 {
-
+	;
 };
-
 
 // Student B
-OurString::OurString(char &string)
+OurString::OurString(char* s)
 {
-
-	if(string) //si non null ?
+	if(s) //si non null ?
 	{
 		int i = 0;
-		while(string[i] != '\0')
+		while(s[i] != '\0')
 		{
-			string[i] = string_[i];
+			string_[i] = s[i];
 			i++;
 		}	
 		string_[i]='\0';
 	}
-
 };
 
 size_t OurString::length()
@@ -71,25 +68,24 @@ size_t OurString::length()
 		i++;
 	}
 	return length_z;
-
 };
 
 size_t OurString::max_size()
 {
-
+	;
 };
 
 void OurString::resize(size_t n, char c)
 {
-
+	;
 };
 
-OurString OurString::operator=(const string&)
+OurString OurString::operator=(const OurString &string)
 {
-
+	;
 };
 
-OurString OurString::operator+(const string&, char c)
+OurString OurString::operator+(char c)
 {
-
+	;
 };

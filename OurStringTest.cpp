@@ -1,4 +1,3 @@
-OurStringTest.cpp
 #include "gtest/gtest.h"
 #include "OurString.cpp"
 #include <iostream>
@@ -17,4 +16,8 @@ TEST(GTestTests, FirstTest) {
 		i++;
 	}
 	EXPECT_TRUE(check);
+}
+TEST(GTestTests, LengthTest) {
+    OurString string;
+    EXPECT_EQ(string.length(), 11);
 }
