@@ -72,7 +72,7 @@ size_t OurString::length()
 
 size_t OurString::max_size()
 {
-	;
+	return max_size_;
 };
 
 void OurString::resize(size_t n, char c)

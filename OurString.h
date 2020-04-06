@@ -18,6 +18,8 @@ class OurString
         OurString operator=(const OurString &string);
         OurString operator+(char c);
 
+
     protected:
-        char string_[101];
+      size_t max_size_ = 100;
+      char string_[max_size];
 };
