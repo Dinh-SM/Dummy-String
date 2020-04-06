@@ -44,16 +44,23 @@ void OurString::clear()
 
 OurString OurString::operator=(char c)
 {
-	;
+	string_[0] = c;
+	string_[1] = '\0';
 };
 
 OurString OurString::operator+(const char* s)
 {
-	;
+	short base_size = size();
+	short i = base_size;
+	while(s[i-base_size] != '\0' && size() < 100){
+		string_[i] = s[i-base_size];
+		i++;
+	};
+	string_[i] = s[i-base_size];
 };
 
 // Student B
-OurString::OurString(char &string)
+OurString::OurString(const char* s)
 {
 	;
 };

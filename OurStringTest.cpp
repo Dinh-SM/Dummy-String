@@ -34,3 +34,16 @@ TEST(GTestTests, ClearTest) {
 	string.clear();
 	EXPECT_EQ(string.size(), 0);
 }
+
+TEST(GTestTests, EqualCharTest) {
+	OurString string;
+	string = 'z';
+	EXPECT_EQ(string.size(), 1);
+}
+
+TEST(GTestTests, PlusCStringTest) {
+	OurString string;
+	OurString string1;
+	string = string + string1.c_str();
+	EXPECT_EQ(string.size(), 22);
+}

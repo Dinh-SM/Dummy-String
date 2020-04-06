@@ -5,3 +5,4 @@ OurStringTest.o: OurStringTest.cpp
 check: OurStringTest.o
 	g++ -o check OurStringTest.o googletest-release-1.10.0/build/lib/libgtest.a googletest-release-1.10.0/build/lib/libgtest_main.a -pthread
 	./check
+	rm ./check
