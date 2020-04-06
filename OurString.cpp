@@ -36,10 +36,30 @@ OurString OurString::operator+(const string&, const char* s)
 OurString::OurString(char &string)
 {
 
+	if(string) //si non null ?
+	{
+		int i = 0;
+		while(string[i] != '\0')
+		{
+			string[i] = string_[i];
+			i++;
+		}	
+		string_[i]='\0';
+	}
+
 };
 
 size_t OurString::length()
 {
+	size_t length_z;
+	length_z = 0;
+	int i = 0;
+	while(string_[i]!='\0')
+	{
+		length_z += 1;
+		i++;
+	}
+	return length_z;
 
 };
 
