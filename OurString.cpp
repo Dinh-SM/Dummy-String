@@ -1,5 +1,16 @@
 #include "OurString.h"
 
+OurString::OurString()
+{
+	char string[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r','l', 'd', '\0'};
+	short i = 0;
+	while(string[i] != '\0'){
+		string_[i] = string[i];
+		i++;
+	};
+	string_[i] = string[i];
+};
+
 // Student A
 OurString::OurString(OurString &string)
 {
