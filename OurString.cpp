@@ -43,7 +43,7 @@ OurString OurString::operator+(const char* s)
 };
 
 // Student B
-OurString::OurString(char* s)
+OurString::OurString(const char* s)
 {
 	if(s) //si non null ?
 	{
@@ -72,13 +72,43 @@ size_t OurString::length()
 
 size_t OurString::max_size()
 {
-	return max_size_;
+	return 100;
 };
 
+
+
 void OurString::resize(size_t n, char c)
+/* Resizes the string to a length of n characters.
+
+If n is smaller than the current string length, the current value is shortened to its first n character, removing the characters beyond the nth.
+
+If n is greater than the current string length, the current content is extended by inserting at the end as many characters as needed to reach a size of n. If c is specified, the new elements are initialized as copies of c, otherwise, they are value-initialized characters (null characters).
+*/
+
 {
-	;
+	
+	if (OurString::length() < n)
+	{
+		int i = OurString::length();
+		while(i < n)
+		{		
+			string_[i] = c;
+			i++;
+		}		
+		string_[i] = '\0'	;
+	}
+	else
+	{
+		int i = n;
+		string_[i] = '\0';
+
+	}
+
 };
+
+
+
+
 
 OurString OurString::operator=(const OurString &string)
 {
@@ -89,3 +119,13 @@ OurString OurString::operator+(char c)
 {
 	;
 };
+
+
+
+
+
+
+
+
+
+

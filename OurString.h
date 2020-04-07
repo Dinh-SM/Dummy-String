@@ -11,15 +11,15 @@ class OurString
         OurString operator+(const char* s);
 
         // Student B
-        OurString( char* s);
+        OurString(const char* s);
         size_t length();
         size_t max_size();
         void resize(size_t n, char c);
         OurString operator=(const OurString &string);
         OurString operator+(char c);
-
-
+        
     protected:
-      size_t max_size_ = 100;
-      char string_[max_size];
+        char string_[101];
+        FRIEND_TEST(GTestTests, ResizeTest); // permet d'effectuer des test sur la chaine de caractère string_ qui est protégée
+        
 };

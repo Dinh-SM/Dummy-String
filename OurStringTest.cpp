@@ -21,3 +21,17 @@ TEST(GTestTests, LengthTest) {
     OurString string;
     EXPECT_EQ(string.length(), 11);
 }
+TEST(GTestTests, Max_SizeTest) {
+	OurString string;
+	EXPECT_EQ(string.max_size(), 100);
+}	
+TEST(GTestTests, ResizeTest) {
+	OurString string;
+	string.resize(5,' ');
+	EXPECT_EQ(string.length(), 5); //test la taille attendue
+	EXPECT_STREQ(string.string_ , "Hello");//Test du raccourci de string
+	OurString string2;
+	string2.resize(16,'!');
+	EXPECT_STREQ(string2.string_, "Hello World!!!!!")//test rallongement de la chaine
+
+;}
