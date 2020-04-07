@@ -110,16 +110,33 @@ If n is greater than the current string length, the current content is extended 
 
 
 
-OurString OurString::operator=(const OurString &string)
+OurString OurString::operator=(const OurString &string) //ptet malheureux d'appeller l'arg string
 {
-	;
+	
+	strcpy(string_,string.string_); //string_ =/= string.string_ !!
+
 };
 
 OurString OurString::operator+(char c)
-{
-	;
-};
 
+{
+	char newc[101];
+	int len = length();
+
+	strcpy(newc, string_);
+	
+	if (len < 101 )
+	{
+		newc[len] = c;
+		newc[len+1] = '\0';
+	};
+
+	OurString news;
+
+	strcpy(news.string_, newc);
+	return news; //renvoie objet OurString 
+
+};
 
 
 

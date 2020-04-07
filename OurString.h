@@ -21,5 +21,5 @@ class OurString
     protected:
         char string_[101];
         FRIEND_TEST(GTestTests, ResizeTest); // permet d'effectuer des test sur la chaine de caractère string_ qui est protégée
-        
+        FRIEND_TEST(GTestTests, Ope_PLUS_SingCHAR);
 };
