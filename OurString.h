@@ -11,7 +11,7 @@ class OurString
         OurString operator+(const char* s);
 
         // Student B
-        OurString(char &string);
+        OurString(const char* s);
         size_t length();
         size_t max_size();
         void resize(size_t n, char c);

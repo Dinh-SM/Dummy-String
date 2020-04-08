@@ -4,7 +4,7 @@ OurString::OurString()
 {
 	char string[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r','l', 'd', '\0'};
 	short i = 0;
-	while(string[i] != '\0' && i < 100){
+	while(string[i] != '\0' && i < 99){
 		string_[i] = string[i];
 		i++;
 	};
@@ -16,7 +16,7 @@ OurString::OurString(OurString &string)
 {
 	char* c_string = string.c_str();
 	short i = 0;
-	while(c_string[i] != '\0' && i < 100){
+	while(c_string[i] != '\0' && i < 99){
 		string_[i] = c_string[i];
 		i++;
 	};
@@ -52,7 +52,7 @@ OurString OurString::operator+(const char* s)
 {
 	short base_size = size();
 	short i = base_size;
-	while(s[i-base_size] != '\0' && size() < 100){
+	while(s[i-base_size] != '\0' && size() < 99){
 		string_[i] = s[i-base_size];
 		i++;
 	};
