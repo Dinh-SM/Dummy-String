@@ -2,10 +2,12 @@
 #include "OurString.cpp"
 #include <iostream>
 
+//Student A
+
 TEST(GTestTests, FirstTest) {
 	OurString string;
 	bool check = true;
-	char* c_string = string.c_str();
+	const char* c_string = string.c_str();
 	char hello[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r','l', 'd', '\0'};
 	short i = 0;
 	while(c_string[i] != '\0' && hello[i] != '\0'){
@@ -17,6 +19,54 @@ TEST(GTestTests, FirstTest) {
 	}
 	EXPECT_TRUE(check);
 }
+// G-Test that tests the default constructor
+TEST(GTestTests, ConstructorTest) {
+	OurString string;
+	const char* c_string = string.c_str();
+	EXPECT_STREQ(c_string, "Hello World");
+}
+
+// G-Test that tests the copy constructor
+TEST(GTestTests, CopyConstructorTest) {
+	OurString string;
+	OurString string1(string);
+	const char* c_string = string1.c_str();
+	EXPECT_STREQ(c_string, "Hello World");
+}
+
+// G-Test that tests the size() method
+TEST(GTestTests, SizeTest) {
+	OurString string;
+	EXPECT_EQ(string.size(), 11);
+}
+
+// G-Test that tests the clear() method
+TEST(GTestTests, ClearTest) {
+	OurString string;
+	string.clear();
+	const char* c_string = string.c_str();
+	EXPECT_STREQ(c_string, "");
+}
+
+// G-Test that tests the assignement operator with a char
+TEST(GTestTests, EqualCharTest) {
+	OurString string; 
+	string = 'z';
+	const char* c_string = string.c_str();
+	EXPECT_STREQ(c_string, "z");
+}
+
+// G-Test that tests the concatenation operator with a c string
+TEST(GTestTests, PlusCStringTest) {
+	OurString string;
+	OurString string1;
+	string = string + string1.c_str();
+	const char* c_string = string.c_str();
+	EXPECT_STREQ(c_string, "Hello WorldHello World");
+}
+
+
+
 TEST(GTestTests, LengthTest) {
     OurString string;
     EXPECT_EQ(string.length(), 11);   
@@ -28,7 +78,8 @@ TEST(GTestTests, Max_SizeTest) {
 TEST(GTestTests, ResizeTest) {
 	OurString string;
 	string.resize(5,' ');
-	EXPECT_EQ(string.length(), 5); //test la taille attendue
+	long unsigned int val = 5;
+	EXPECT_EQ(string.length(), val); //test la taille attendue
 	EXPECT_STREQ(string.c_str(), "Hello");//Test du raccourci de string
 	OurString string2;
 	string2.resize(16,'!');
@@ -50,3 +101,5 @@ TEST(GTestTests, Ope_PLUS_SingCHAR){
 	string = string +'!';
 	EXPECT_STREQ(string.c_str(), "Hello World!"); 
 }		
+
+

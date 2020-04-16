@@ -1,48 +1,90 @@
 #include "OurString.h"
 
+
+// Default constructor that initializes an OurString object
+// with "Hello World" as content
 OurString::OurString()
 {
-	char string[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r','l', 'd', '\0'};
-	short i = 0;
-	while(string[i] != '\0'){
-		string_[i] = string[i];
-		i++;
-	};
-	string_[i] = string[i];
+	strcpy(string_, "Hello World");
+
 };
 
 // Student A
+
+// Copy constructor that takes another OurString object and
+// initialize a new OurString object with the same content
 OurString::OurString(OurString &string)
 {
-	;
+
+	const char* c_string = string.c_str();
+	if((c_string != NULL) && (c_string[0] != '\0')){
+		strcpy(string_, c_string);
+	}else{
+		strcpy(string_, "");
+	};
+
 };
 
-char* OurString::c_str()
+// Method that returns the content as a c string (array of char)
+const char* OurString::c_str() const
 {
 	return string_;
 };
 
-size_t OurString::size()
+// Method that returns the size/length of the content
+size_t OurString::size() const
 {
-	;
+
+	short i = 0;
+	while(string_[i] != '\0'){
+		i++;
+	};
+
+	return i;
+
 };
 
+// Method that clears the content of the string (size = 0)
 void OurString::clear()
 {
-	;
+
+	memset(string_, 0, sizeof(string_));
+
 };
 
-OurString OurString::operator=(char c)
+// Operator of assignement: takes the char c as new content
+OurString& OurString::operator=(char c)
 {
-	;
+
+	string_[0] = c;
+	string_[1] = '\0';
+
+	return *this;
 };
 
+// Operator of concatenation: concatenate the content with the
+// c string
 OurString OurString::operator+(const char* s)
 {
-	;
-};
+	char new_string[100];
+	strcpy(new_string, string_);
 
+	if((s != NULL) && (s[0] != '\0')){
+		
+		short base_size = size();
+		short i = base_size;
+		while(s[i-base_size] != '\0' && size() < 99){
+			new_string[i] = s[i-base_size];
+			i++;
+		};
+		new_string[i] = s[i-base_size];
 
+	}
+
+	OurString new_our_string(new_string);
+
+	return new_our_string;
+}
 
 //-------------------------------------------------------------
 // Student B
@@ -69,7 +111,7 @@ OurString::OurString(const char* s)
 
 
 // Method that returns the size/length of the content in an unsigned integral type size_t
-size_t OurString::length()
+size_t OurString::length() const
 {
 	size_t length_z;
 	length_z = 0;
@@ -83,9 +125,10 @@ size_t OurString::length()
 };
 
 // Method that returns the maximum length the string can reach in an unsigned integral type size_t
-size_t OurString::max_size()
+size_t OurString::max_size() const
 {
 	return 100;
+
 };
 
 
@@ -100,9 +143,10 @@ If n is greater than the current string length, the current content is extended 
 */
 
 {
+
 	if (OurString::length() < n)
 	{
-		int i = OurString::length();
+		size_t i = OurString::length();
 		while(i < n)
 		{		
 			string_[i] = c;
@@ -112,7 +156,7 @@ If n is greater than the current string length, the current content is extended 
 	}
 	else
 	{
-		int i = n;
+		size_t i = n;
 		string_[i] = '\0';
 
 	}
@@ -153,12 +197,4 @@ OurString OurString::operator+(char c)
 	return news; //renvoie objet OurString news
 
 };
-
-
-
-
-
-
-
-
 
