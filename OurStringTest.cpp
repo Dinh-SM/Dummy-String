@@ -67,25 +67,42 @@ TEST(GTestTests, PlusCStringTest) {
 
 
 
+
+
+//----------------------
+// Student B
+
+//Test of method string.length() 
+// Comparison of an expected return with the default constructor
 TEST(GTestTests, LengthTest) {
     OurString string;
     EXPECT_EQ(string.length(), 11);   
 }
+
+
+//Test of method string.max_size() 
+// Comparison of an expected return with the default constructor
 TEST(GTestTests, Max_SizeTest) {
 	OurString string;
 	EXPECT_EQ(string.max_size(), 100);
 }	
+
+
+//Test of method string.resize(n,c) 
+// Test of an expected length after beign resized
 TEST(GTestTests, ResizeTest) {
 	OurString string;
 	string.resize(5,' ');
 	long unsigned int val = 5;
-	EXPECT_EQ(string.length(), val); //test la taille attendue
+	EXPECT_EQ(string.length(), val); //test de la taille attendue
 	EXPECT_STREQ(string.c_str(), "Hello");//Test du raccourci de string
 	OurString string2;
 	string2.resize(16,'!');
 	EXPECT_STREQ(string2.c_str(), "Hello World!!!!!");//test rallongement de la chaine;
 }
    
+//Test of OurString::operator=(const OurString &string)
+// Test of an expected length after a new assignation
 TEST(GTestTests, Ope_Eg_String){
 	OurString string; // len(string.string_) == 11
 	char c[] = "Hello ! "; // len(c) == 8
@@ -95,6 +112,8 @@ TEST(GTestTests, Ope_Eg_String){
 	EXPECT_EQ(string2.length(), 11);
 }
 
+//Test of OurString::operator+(char c)
+// Test of an expected string after the addition of a single char
 TEST(GTestTests, Ope_PLUS_SingCHAR){
 	OurString string;
 	//OurString truc(string + 'f'); // NE MARCHE PAS CAR (string+'f') est de type Objet et le constructeur prend pour arg(chaine de char) !
