@@ -4,13 +4,6 @@
 //Student A
 
 // G-Test that tests the default constructor
-TEST(GTestTests, FirstTest) {
-	OurString string;
-	const char* c_string = string.c_str();
-	EXPECT_STREQ(c_string, "Hello World");
-}
-
-// G-Test that tests the default constructor
 TEST(GTestTests, ConstructorTest) {
 	OurString string;
 	const char* c_string = string.c_str();
