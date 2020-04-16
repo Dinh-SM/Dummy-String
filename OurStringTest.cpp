@@ -58,12 +58,23 @@ TEST(GTestTests, PlusCStringTest) {
 }
 
 
-//Student B
+
 
 
 
 //----------------------
 // Student B
+//----------------------
+
+
+// Test of constructor OurString::OurString(const char* s)
+// Comparison of an expected return with the cstring constructor and a know char[]
+TEST(GTestTests, ConstructorCStringTest) {
+	OurString string("Hello World");
+	const char* c_string = string.c_str();
+	EXPECT_STREQ(c_string, "Hello World");
+}
+
 
 //Test of method string.length() 
 // Comparison of an expected return with the default constructor
@@ -78,7 +89,8 @@ TEST(GTestTests, LengthTest) {
 // Comparison of an expected return with the default constructor
 TEST(GTestTests, MaxSizeTest) {
 	OurString string;
-	EXPECT_EQ(string.max_size(), 100);
+	long unsigned int val = 100;
+	EXPECT_EQ(string.max_size(), val);
 }	
 
 
