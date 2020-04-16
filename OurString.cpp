@@ -51,7 +51,7 @@ OurString OurString::operator+(const char* s)
 // Copies the null-terminated character sequence (C-string) pointed by s.
 OurString::OurString(const char* s)
 {
-	if(s) //si non null ?
+	if ((s != NULL) && (s[0] != '\0')) //if s non null and it's first character isn't the null terminator
 	{
 		int i = 0;
 		while(s[i] != '\0')
@@ -96,24 +96,25 @@ If n is greater than the current string length, the current content is extended 
 */
 
 {
-	
-	if (OurString::length() < n)
-	{
-		int i = OurString::length();
-		while(i < n)
-		{		
-			string_[i] = c;
-			i++;
-		}		
-		string_[i] = '\0'	;
-	}
-	else
-	{
-		int i = n;
-		string_[i] = '\0';
+	if(n != 0)
+	{	
+		if (OurString::length() < n)
+		{
+			int i = OurString::length();
+			while(i < n)
+			{		
+				string_[i] = c;
+				i++;
+			}		
+			string_[i] = '\0'	;
+		}
+		else
+		{
+			int i = n;
+			string_[i] = '\0';
 
+		}
 	}
-
 };
 
 
