@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
 #include "OurString.cpp"
-#include<iostream>
 
 // G-Test that tests the default constructor
 TEST(GTestTests, ConstructorTest) {

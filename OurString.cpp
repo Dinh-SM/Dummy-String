@@ -14,7 +14,11 @@ OurString::OurString()
 OurString::OurString(OurString &string)
 {
 	const char* c_string = string.c_str();
-	strcpy(string_, c_string);
+	if((c_string != NULL) && (c_string[0] != '\0')){
+		strcpy(string_, c_string);
+	}else{
+		strcpy(string_, "");
+	};
 };
 
 // Method that returns the content as a c string (array of char)
@@ -29,7 +33,8 @@ size_t OurString::size() const
 	short i = 0;
 	while(string_[i] != '\0'){
 		i++;
-	}
+	};
+
 	return i;
 };
 
@@ -44,6 +49,7 @@ OurString& OurString::operator=(char c)
 {
 	string_[0] = c;
 	string_[1] = '\0';
+
 	return *this;
 };
 
@@ -51,13 +57,22 @@ OurString& OurString::operator=(char c)
 // c string
 OurString OurString::operator+(const char* s)
 {
-	short base_size = size();
-	short i = base_size;
-	while(s[i-base_size] != '\0' && size() < 99){
-		string_[i] = s[i-base_size];
-		i++;
+	if((s != NULL) && (s[0] != '\0')){
+		char new_string[100];
+
+		short base_size = size();
+		short i = base_size;
+		while(s[i-base_size] != '\0' && size() < 99){
+			new_string[i] = s[i-base_size];
+			i++;
+		};
+		new_string[i] = s[i-base_size];
+
+		OurString new_our_string(new_string);
+
+		return new_our_string;
 	};
-	string_[i] = s[i-base_size];
+
 	return *this;
 };
 
