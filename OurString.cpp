@@ -1,34 +1,30 @@
 #include "OurString.h"
 
+// Default constructor that initializes an OurString object
+// with "Hello World" as content
 OurString::OurString()
 {
-	char string[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r','l', 'd', '\0'};
-	short i = 0;
-	while(string[i] != '\0' && i < 99){
-		string_[i] = string[i];
-		i++;
-	};
-	string_[i] = string[i];
+	strcpy(string_, "Hello World");
 };
 
 // Student A
+
+// Copy constructor that takes another OurString object and
+// initialize a new OurString object with the same content
 OurString::OurString(OurString &string)
 {
-	char* c_string = string.c_str();
-	short i = 0;
-	while(c_string[i] != '\0' && i < 99){
-		string_[i] = c_string[i];
-		i++;
-	};
-	string_[i] = c_string[i];
+	const char* c_string = string.c_str();
+	strcpy(string_, c_string);
 };
 
-char* OurString::c_str()
+// Method that returns the content as a c string (array of char)
+const char* OurString::c_str() const
 {
 	return string_;
 };
 
-size_t OurString::size()
+// Method that returns the size/length of the content
+size_t OurString::size() const
 {
 	short i = 0;
 	while(string_[i] != '\0'){
@@ -37,17 +33,21 @@ size_t OurString::size()
 	return i;
 };
 
+// Method that clears the content of the string (size = 0)
 void OurString::clear()
 {
 	memset(string_, 0, sizeof(string_));
 };
 
-OurString OurString::operator=(char c)
+// Operator of assignement: takes the char c as new content
+OurString& OurString::operator=(char c)
 {
 	string_[0] = c;
 	string_[1] = '\0';
 };
 
+// Operator of concatenation: concatenate the content with the
+// c string
 OurString OurString::operator+(const char* s)
 {
 	short base_size = size();
@@ -65,12 +65,12 @@ OurString::OurString(const char* s)
 	;
 };
 
-size_t OurString::length()
+size_t OurString::length() const
 {
 	;
 };
 
-size_t OurString::max_size()
+size_t OurString::max_size() const
 {
 	;
 };
@@ -80,7 +80,7 @@ void OurString::resize(size_t n, char c)
 	;
 };
 
-OurString OurString::operator=(const OurString &string)
+OurString& OurString::operator=(const OurString &string)
 {
 	;
 };

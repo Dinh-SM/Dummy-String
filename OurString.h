@@ -2,20 +2,21 @@ class OurString
 {
     public:
         OurString();
+        
         // Student A
         OurString(OurString &string);
-        char* c_str();
-        size_t size();
+        const char* c_str() const;
+        std::size_t size() const;
         void clear();
-        OurString operator=(char c);
+        OurString& operator=(char c);
         OurString operator+(const char* s);
 
         // Student B
         OurString(const char* s);
-        size_t length();
-        size_t max_size();
-        void resize(size_t n, char c);
-        OurString operator=(const OurString &string);
+        std::size_t length() const;
+        std::size_t max_size() const;
+        void resize(std::size_t n, char c);
+        OurString& operator=(const OurString &string);
         OurString operator+(char c);
 
     protected:
