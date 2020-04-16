@@ -19,7 +19,7 @@ TEST(GTestTests, FirstTest) {
 }
 TEST(GTestTests, LengthTest) {
     OurString string;
-    EXPECT_EQ(string.length(), 11);
+    EXPECT_EQ(string.length(), 11);   
 }
 TEST(GTestTests, Max_SizeTest) {
 	OurString string;
@@ -29,10 +29,10 @@ TEST(GTestTests, ResizeTest) {
 	OurString string;
 	string.resize(5,' ');
 	EXPECT_EQ(string.length(), 5); //test la taille attendue
-	EXPECT_STREQ(string.string_ , "Hello");//Test du raccourci de string
+	EXPECT_STREQ(string.c_str(), "Hello");//Test du raccourci de string
 	OurString string2;
 	string2.resize(16,'!');
-	EXPECT_STREQ(string2.string_, "Hello World!!!!!");//test rallongement de la chaine;
+	EXPECT_STREQ(string2.c_str(), "Hello World!!!!!");//test rallongement de la chaine;
 }
    
 TEST(GTestTests, Ope_Eg_String){
@@ -48,5 +48,5 @@ TEST(GTestTests, Ope_PLUS_SingCHAR){
 	OurString string;
 	//OurString truc(string + 'f'); // NE MARCHE PAS CAR (string+'f') est de type Objet et le constructeur prend pour arg(chaine de char) !
 	string = string +'!';
-	EXPECT_STREQ(string.string_, "Hello World!"); 
+	EXPECT_STREQ(string.c_str(), "Hello World!"); 
 }		
