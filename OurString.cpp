@@ -42,7 +42,13 @@ OurString OurString::operator+(const char* s)
 	;
 };
 
+
+
+//-------------------------------------------------------------
 // Student B
+
+// Constructor that initializes an OurString object from a c-string passed as argument
+// Copies the null-terminated character sequence (C-string) pointed by s.
 OurString::OurString(const char* s)
 {
 	if(s) //si non null ?
@@ -57,6 +63,8 @@ OurString::OurString(const char* s)
 	}
 };
 
+
+// Method that returns the size/length of the content in an unsigned integral type size_t
 size_t OurString::length()
 {
 	size_t length_z;
@@ -70,6 +78,7 @@ size_t OurString::length()
 	return length_z;
 };
 
+// Method that returns the maximum length the string can reach in an unsigned integral type size_t
 size_t OurString::max_size()
 {
 	return 100;
@@ -77,8 +86,9 @@ size_t OurString::max_size()
 
 
 
+
 void OurString::resize(size_t n, char c)
-/* Resizes the string to a length of n characters.
+/* Method that resizes the string to a length of n characters.
 
 If n is smaller than the current string length, the current value is shortened to its first n character, removing the characters beyond the nth.
 
@@ -109,23 +119,26 @@ If n is greater than the current string length, the current content is extended 
 
 
 
-
-OurString OurString::operator=(const OurString &string) //ptet malheureux d'appeller l'arg string
+// Operator of assignement: takes the OurString &string as new content and return a new one
+OurString& OurString::operator=(const OurString &string) 
 {
 	
 	strcpy(string_,string.string_); //string_ =/= string.string_ !!
+	return *this;
 
 };
 
+
+// Operator of concatenation: concatenate the content of our string object with a single character
 OurString OurString::operator+(char c)
 
 {
-	char newc[101];
+	char newc[100];
 	int len = length();
 
 	strcpy(newc, string_);
 	
-	if (len < 101 )
+	if (len < 100 )
 	{
 		newc[len] = c;
 		newc[len+1] = '\0';
@@ -134,7 +147,7 @@ OurString OurString::operator+(char c)
 	OurString news;
 
 	strcpy(news.string_, newc);
-	return news; //renvoie objet OurString 
+	return news; //renvoie objet OurString news
 
 };
 
