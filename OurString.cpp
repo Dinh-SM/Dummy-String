@@ -44,6 +44,7 @@ OurString& OurString::operator=(char c)
 {
 	string_[0] = c;
 	string_[1] = '\0';
+	return *this;
 };
 
 // Operator of concatenation: concatenate the content with the
@@ -57,6 +58,7 @@ OurString OurString::operator+(const char* s)
 		i++;
 	};
 	string_[i] = s[i-base_size];
+	return *this;
 };
 
 // Student B
