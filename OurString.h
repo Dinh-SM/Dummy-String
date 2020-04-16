@@ -9,12 +9,10 @@ class OurString
         size_t size() const;
         void clear();
         OurString& operator=(char c);
-
         OurString operator+(const char* s);
 
         // Student B
         OurString(const char* s);
-
         size_t length() const;
         size_t max_size() const;
         void resize(std::size_t n, char c);

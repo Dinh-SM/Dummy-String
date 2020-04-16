@@ -1,13 +1,12 @@
 #include "OurString.h"
 
-
 // Default constructor that initializes an OurString object
 // with "Hello World" as content
 OurString::OurString()
 {
 	strcpy(string_, "Hello World");
-
 };
+
 
 // Student A
 
@@ -15,14 +14,12 @@ OurString::OurString()
 // initialize a new OurString object with the same content
 OurString::OurString(OurString &string)
 {
-
 	const char* c_string = string.c_str();
 	if((c_string != NULL) && (c_string[0] != '\0')){
 		strcpy(string_, c_string);
 	}else{
 		strcpy(string_, "");
 	};
-
 };
 
 // Method that returns the content as a c string (array of char)
@@ -34,28 +31,23 @@ const char* OurString::c_str() const
 // Method that returns the size/length of the content
 size_t OurString::size() const
 {
-
 	short i = 0;
 	while(string_[i] != '\0'){
 		i++;
 	};
 
 	return i;
-
 };
 
 // Method that clears the content of the string (size = 0)
 void OurString::clear()
 {
-
 	memset(string_, 0, sizeof(string_));
-
 };
 
 // Operator of assignement: takes the char c as new content
 OurString& OurString::operator=(char c)
 {
-
 	string_[0] = c;
 	string_[1] = '\0';
 
@@ -78,15 +70,14 @@ OurString OurString::operator+(const char* s)
 			i++;
 		};
 		new_string[i] = s[i-base_size];
-
-	}
+	};
 
 	OurString new_our_string(new_string);
 
 	return new_our_string;
 }
 
-//-------------------------------------------------------------
+
 // Student B
 
 // Constructor that initializes an OurString object from a c-string passed as argument
@@ -130,9 +121,6 @@ size_t OurString::max_size() const
 	return 100;
 
 };
-
-
-
 
 void OurString::resize(size_t n, char c)
 /* Method that resizes the string to a length of n characters.

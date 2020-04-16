@@ -1,24 +1,8 @@
 #include "gtest/gtest.h"
 #include "OurString.cpp"
-#include <iostream>
 
 //Student A
 
-TEST(GTestTests, FirstTest) {
-	OurString string;
-	bool check = true;
-	const char* c_string = string.c_str();
-	char hello[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r','l', 'd', '\0'};
-	short i = 0;
-	while(c_string[i] != '\0' && hello[i] != '\0'){
-		if (c_string[i] != hello[i])
-		{
-			check = false;
-		}
-		i++;
-	}
-	EXPECT_TRUE(check);
-}
 // G-Test that tests the default constructor
 TEST(GTestTests, ConstructorTest) {
 	OurString string;
@@ -34,10 +18,18 @@ TEST(GTestTests, CopyConstructorTest) {
 	EXPECT_STREQ(c_string, "Hello World");
 }
 
+// G-Test that tests the c_str() method
+TEST(GTestTests, CStrTest) {
+	OurString string;
+	const char* c_string = string.c_str();
+	EXPECT_STREQ(c_string, "Hello World");
+}
+
 // G-Test that tests the size() method
 TEST(GTestTests, SizeTest) {
 	OurString string;
-	EXPECT_EQ(string.size(), 11);
+	long unsigned int val = 11;
+	EXPECT_EQ(string.size(), val);
 }
 
 // G-Test that tests the clear() method
@@ -66,6 +58,7 @@ TEST(GTestTests, PlusCStringTest) {
 }
 
 
+//Student B
 
 
 
@@ -76,13 +69,14 @@ TEST(GTestTests, PlusCStringTest) {
 // Comparison of an expected return with the default constructor
 TEST(GTestTests, LengthTest) {
     OurString string;
-    EXPECT_EQ(string.length(), 11);   
+	long unsigned int val = 11;
+    EXPECT_EQ(string.length(), val);   
 }
 
 
 //Test of method string.max_size() 
 // Comparison of an expected return with the default constructor
-TEST(GTestTests, Max_SizeTest) {
+TEST(GTestTests, MaxSizeTest) {
 	OurString string;
 	EXPECT_EQ(string.max_size(), 100);
 }	
@@ -90,6 +84,7 @@ TEST(GTestTests, Max_SizeTest) {
 
 //Test of method string.resize(n,c) 
 // Test of an expected length after beign resized
+
 TEST(GTestTests, ResizeTest) {
 	OurString string;
 	string.resize(5,' ');
@@ -103,22 +98,22 @@ TEST(GTestTests, ResizeTest) {
    
 //Test of OurString::operator=(const OurString &string)
 // Test of an expected length after a new assignation
-TEST(GTestTests, Ope_Eg_String){
+TEST(GTestTests, OpeEgString){
 	OurString string; // len(string.string_) == 11
 	char c[] = "Hello ! "; // len(c) == 8
 	OurString string2(c);
-	EXPECT_EQ(string2.length(), 8);
+	long unsigned int val = 8;
+	EXPECT_EQ(string2.length(), val);
 	string2 = string;
-	EXPECT_EQ(string2.length(), 11);
+	val = 11;
+	EXPECT_EQ(string2.length(), val);
 }
 
 //Test of OurString::operator+(char c)
 // Test of an expected string after the addition of a single char
-TEST(GTestTests, Ope_PLUS_SingCHAR){
+TEST(GTestTests, OpePLUSSingCHAR){
 	OurString string;
 	//OurString truc(string + 'f'); // NE MARCHE PAS CAR (string+'f') est de type Objet et le constructeur prend pour arg(chaine de char) !
 	string = string +'!';
 	EXPECT_STREQ(string.c_str(), "Hello World!"); 
-}		
-
-
+}
