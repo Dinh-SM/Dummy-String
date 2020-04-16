@@ -25,6 +25,13 @@ TEST(GTestTests, CopyConstructorTest) {
 	EXPECT_STREQ(c_string, "Hello World");
 }
 
+// G-Test that tests the c_str() method
+TEST(GTestTests, CStrTest) {
+	OurString string;
+	const char* c_string = string.c_str();
+	EXPECT_STREQ(c_string, "Hello World");
+}
+
 // G-Test that tests the size() method
 TEST(GTestTests, SizeTest) {
 	OurString string;
