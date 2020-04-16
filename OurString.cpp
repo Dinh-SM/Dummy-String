@@ -61,6 +61,10 @@ OurString::OurString(const char* s)
 		}	
 		string_[i]='\0';
 	}
+	else
+	{
+        strcpy(string_, "");
+    };
 };
 
 
@@ -96,25 +100,23 @@ If n is greater than the current string length, the current content is extended 
 */
 
 {
-	if(n != 0)
-	{	
-		if (OurString::length() < n)
-		{
-			int i = OurString::length();
-			while(i < n)
-			{		
-				string_[i] = c;
-				i++;
-			}		
-			string_[i] = '\0'	;
-		}
-		else
-		{
-			int i = n;
-			string_[i] = '\0';
-
-		}
+	if (OurString::length() < n)
+	{
+		int i = OurString::length();
+		while(i < n)
+		{		
+			string_[i] = c;
+			i++;
+		}		
+		string_[i] = '\0'	;
 	}
+	else
+	{
+		int i = n;
+		string_[i] = '\0';
+
+	}
+
 };
 
 
