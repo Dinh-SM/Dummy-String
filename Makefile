@@ -1,7 +1,6 @@
 CXXFLAGS= -Wall
 
 OurStringTest.o: OurStringTest.cpp
-
 	touch OurStringTest.cpp
 	g++ $(CXXFLAGS) -c OurStringTest.cpp -o OurStringTest.o -Igoogletest-release-1.10.0/googletest/include/ -std=c++11
 check: OurStringTest.o
