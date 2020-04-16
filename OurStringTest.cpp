@@ -28,7 +28,8 @@ TEST(GTestTests, CopyConstructorTest) {
 // G-Test that tests the size() method
 TEST(GTestTests, SizeTest) {
 	OurString string;
-	EXPECT_EQ(string.size(), 11);
+	long unsigned int val = 11;
+	EXPECT_EQ(string.size(), val);
 }
 
 // G-Test that tests the clear() method
@@ -61,12 +62,14 @@ TEST(GTestTests, PlusCStringTest) {
 
 TEST(GTestTests, LengthTest) {
     OurString string;
-    EXPECT_EQ(string.length(), 11);   
+	long unsigned int val = 11;
+    EXPECT_EQ(string.length(), val);   
 }
 
 TEST(GTestTests, Max_SizeTest) {
 	OurString string;
-	EXPECT_EQ(string.max_size(), 100);
+	long unsigned int val = 100;
+	EXPECT_EQ(string.max_size(), val);
 }
 
 TEST(GTestTests, ResizeTest) {
@@ -84,9 +87,11 @@ TEST(GTestTests, Ope_Eg_String){
 	OurString string; // len(string.string_) == 11
 	char c[] = "Hello ! "; // len(c) == 8
 	OurString string2(c);
-	EXPECT_EQ(string2.length(), 8);
+	long unsigned int val = 8;
+	EXPECT_EQ(string2.length(), val);
 	string2 = string;
-	EXPECT_EQ(string2.length(), 11);
+	val = 11;
+	EXPECT_EQ(string2.length(), val);
 }
 
 TEST(GTestTests, Ope_PLUS_SingCHAR){
