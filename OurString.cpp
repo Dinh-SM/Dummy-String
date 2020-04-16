@@ -63,13 +63,13 @@ OurString OurString::operator+(const char* s)
 
 	if((s != NULL) && (s[0] != '\0')){
 		
-		short size = size();
-		short i = size;
-		while(s[i-size] != '\0' && size() < 99){
-			new_string[i] = s[i-size];
+		short base_size = size();
+		short i = base_size;
+		while(s[i-base_size] != '\0' && size() < 99){
+			new_string[i] = s[i-base_size];
 			i++;
 		};
-		new_string[i] = s[i-size];
+		new_string[i] = s[i-base_size];
 	};
 
 	OurString new_our_string(new_string);
