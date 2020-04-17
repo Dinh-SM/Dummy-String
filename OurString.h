@@ -20,5 +20,5 @@ class OurString
         OurString operator+(char c);
 
     protected:
-        char string_[100];
+        char *string_;
 };
