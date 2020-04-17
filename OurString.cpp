@@ -8,9 +8,12 @@ OurString::OurString()
 	strcpy(string_, "Hello World");
 };
 
-size_t size_(const char* s) const{
+// Protected method that returns the size of a c string
+size_t size_(const char* s) const
+{
 	short i = 0;
-	while(s[i] != '\0'){
+	while(s[i] != '\0')
+	{
 		i++;
 	};
 
@@ -25,14 +28,16 @@ size_t size_(const char* s) const{
 OurString::OurString(OurString &string)
 {
 	const char* c_string = string.c_str();
-	if((c_string != NULL) && (c_string[0] != '\0')){
+	if((c_string != NULL) && (c_string[0] != '\0'))
+	{
 		size_t new_size = size_(c_string);
 		string_ = new char[new_size+1];
 		strcpy(string_, c_string);
-	}else{
-		size_t new_size = size_(c_string);
-		string_ = new char[new_size+1];
-		strcpy(string_, "");
+	}
+	else
+	{
+		string_ = new char[1];
+		string_[0] = '\0';
 	};
 };
 
@@ -46,7 +51,8 @@ const char* OurString::c_str() const
 size_t OurString::size() const
 {
 	short i = 0;
-	while(string_[i] != '\0'){
+	while(string_[i] != '\0')
+	{
 		i++;
 	};
 
@@ -62,8 +68,17 @@ void OurString::clear()
 // Operator of assignement: takes the char c as new content
 OurString& OurString::operator=(char c)
 {
-	string_[0] = c;
-	string_[1] = '\0';
+	if((c != NULL) && (c != '\0'))
+	{
+		string_ = new char[2];
+		string_[0] = c;
+		string_[1] = '\0';
+	}
+	else
+	{
+		string_ = new char[1];
+		string_[0] = '\0';
+	};
 
 	return *this;
 };
@@ -72,22 +87,28 @@ OurString& OurString::operator=(char c)
 // c string
 OurString OurString::operator+(const char* s)
 {
-	size_t new_size = size_(s);
-	char new_string[size()+new_size+1];
-	strcpy(new_string, string_);
-
-	if((s != NULL) && (s[0] != '\0')){
+	if((s != NULL) && (s[0] != '\0') && size()+size_(s)+1 <= 100)
+	{
+		size_t new_size = size()+size_(s);
+		char new_string[new_size+1];
+		strcpy(new_string, string_);
+		
 		short base_size = size();
-		short i = base_size;
-		while(s[i-base_size] != '\0' && size() < 99){
-			new_string[i] = s[i-base_size];
+		short i = 0;
+		while(s[i] != '\0')
+		{
+			new_string[base_size+i] = s[i];
 			i++;
 		};
-		new_string[i] = s[i-base_size];
+		new_string[base_size+i] = s[i];
+		
+		OurString new_our_string(new_string);
+	}
+	else
+	{
+		OurString new_our_string(*this);
 	};
-
-	OurString new_our_string(new_string);
-
+	
 	return new_our_string;
 }
 
@@ -178,7 +199,7 @@ OurString OurString::operator+(char c)
 	char newc = new char[length()+2];
 	strcpy(newc, string_);
 	
-	if (length()+2 < 100 )
+	if (length()+2 <= 100)
 	{
 		newc[length()] = c;
 		newc[length()+1] = '\0';
