@@ -3,7 +3,6 @@ class OurString
     public:
         OurString();
         //TODO: ~OurString();
-        size_t size_(const char* s) const;
 
         // Student A
         OurString(OurString &string);
@@ -23,4 +22,5 @@ class OurString
 
     protected:
         char* string_;
+        size_t size_(const char* s) const;
 };

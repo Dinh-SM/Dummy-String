@@ -9,7 +9,7 @@ OurString::OurString()
 };
 
 // Protected method that returns the size of a c string
-size_t size_(const char* s) const
+size_t OurString::size_(const char* s) const
 {
 	short i = 0;
 	while(s[i] != '\0')
@@ -62,13 +62,13 @@ size_t OurString::size() const
 // Method that clears the content of the string (size = 0)
 void OurString::clear()
 {
-	memset(string_, 0, sizeof(string_));
+	memset(string_, 0, sizeof(*string_));
 };
 
 // Operator of assignement: takes the char c as new content
 OurString& OurString::operator=(char c)
 {
-	if((c != NULL) && (c != '\0'))
+	if(c != '\0')
 	{
 		string_ = new char[2];
 		string_[0] = c;
@@ -103,11 +103,11 @@ OurString OurString::operator+(const char* s)
 		new_string[base_size+i] = s[i];
 		
 		OurString new_our_string(new_string);
-	}
-	else
-	{
-		OurString new_our_string(*this);
+	
+		return new_our_string;
 	};
+	
+	OurString new_our_string(*this);
 	
 	return new_our_string;
 }
@@ -128,7 +128,7 @@ OurString::OurString(const char* s)
 	else
 	{
 		string_ = new char[1];
-        	strcpy(string_, "");
+		string_[0] = '\0';
 	};
 };
 
@@ -141,15 +141,15 @@ OurString::OurString(const char* s)
 // Method that returns the size/length of the content in an unsigned integral type size_t
 size_t OurString::length() const
 {
-	size_t length_z;
-	length_z = 0;
+	size_t len;
+	len = 0;
 	int i = 0;
 	while(string_[i]!='\0')
 	{
-		length_z += 1;
+		len += 1;
 		i++;
 	}
-	return length_z;
+	return len;
 };
 
 // Method that returns the maximum length the string can reach in an unsigned integral type size_t
@@ -170,21 +170,21 @@ void OurString::resize(size_t n, char c)
 		char* new_string = new char[n+1];
 		strcpy(new_string, string_);
 		size_t i = length();
-		while(i <= n)
+		while(i < n)
 		{
 			new_string[i] = c;
 			i++;
 		}
 		new_string[i] = '\0'	;
 		
-		string_ = new char[n+1];
+		string_ = new char[n];
 		strcpy(string_, new_string);
 	}
 	else
 	{
 		char* new_string = new char[n+1];
 		strcpy(new_string, string_);
-		new_string[n+1] = '\0';
+		new_string[n] = '\0';
 		string_ = new char[n+1];
 		strcpy(string_, new_string);
 	}
@@ -202,7 +202,7 @@ OurString& OurString::operator=(const OurString &string)
 // Operator of concatenation: concatenate the content of our string object with a single character
 OurString OurString::operator+(char c)
 {
-	char newc = new char[length()+2];
+	char* newc = new char[length()+2];
 	strcpy(newc, string_);
 	
 	if (length()+2 <= 100)

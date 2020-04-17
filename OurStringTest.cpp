@@ -28,8 +28,8 @@ TEST(GTestTests, CStrTest) {
 // G-Test that tests the size() method
 TEST(GTestTests, SizeTest) {
 	OurString string;
-	long unsigned int val = 11;
-	EXPECT_EQ(string.size(), val);
+	size_t expected_size = 11;
+	EXPECT_EQ(string.size(), expected_size);
 }
 
 // G-Test that tests the clear() method
@@ -38,6 +38,8 @@ TEST(GTestTests, ClearTest) {
 	string.clear();
 	const char* c_string = string.c_str();
 	EXPECT_STREQ(c_string, "");
+	size_t expected_size = 0;
+	EXPECT_EQ(string.size(), expected_size);
 }
 
 // G-Test that tests the assignement operator with a char
@@ -58,14 +60,7 @@ TEST(GTestTests, PlusCStringTest) {
 }
 
 
-
-
-
-
-//----------------------
 // Student B
-//----------------------
-
 
 // Test of constructor OurString::OurString(const char* s)
 // Comparison of an expected return with the cstring constructor and a know char[]
@@ -80,8 +75,8 @@ TEST(GTestTests, ConstructorCStringTest) {
 // Comparison of an expected return with the default constructor
 TEST(GTestTests, LengthTest) {
     OurString string;
-	long unsigned int val = 11;
-    EXPECT_EQ(string.length(), val);   
+	size_t expected_size = 11;
+    EXPECT_EQ(string.length(), expected_size);   
 }
 
 
@@ -89,8 +84,8 @@ TEST(GTestTests, LengthTest) {
 // Comparison of an expected return with the default constructor
 TEST(GTestTests, MaxSizeTest) {
 	OurString string;
-	long unsigned int val = 100;
-	EXPECT_EQ(string.max_size(), val);
+	size_t expected_size = 100;
+	EXPECT_EQ(string.max_size(), expected_size);
 }	
 
 
@@ -100,8 +95,8 @@ TEST(GTestTests, MaxSizeTest) {
 TEST(GTestTests, ResizeTest) {
 	OurString string;
 	string.resize(5,' ');
-	long unsigned int val = 5;
-	EXPECT_EQ(string.length(), val); //test de la taille attendue
+	size_t expected_size = 5;
+	EXPECT_EQ(string.length(), expected_size); //test de la taille attendue
 	EXPECT_STREQ(string.c_str(), "Hello");//Test du raccourci de string
 	OurString string2;
 	string2.resize(16,'!');
@@ -114,16 +109,16 @@ TEST(GTestTests, OpeEgString){
 	OurString string; // len(string.string_) == 11
 	char c[] = "Hello ! "; // len(c) == 8
 	OurString string2(c);
-	long unsigned int val = 8;
-	EXPECT_EQ(string2.length(), val);
+	size_t expected_size = 8;
+	EXPECT_EQ(string2.length(), expected_size);
 	string2 = string;
-	val = 11;
-	EXPECT_EQ(string2.length(), val);
+	expected_size = 11;
+	EXPECT_EQ(string2.length(), expected_size);
 }
 
 //Test of OurString::operator+(char c)
 // Test of an expected string after the addition of a single char
-TEST(GTestTests, OpePLUSSingCHAR){
+TEST(GTestTests, OpePlusSingCHAR){
 	OurString string;
 	//OurString truc(string + 'f'); // NE MARCHE PAS CAR (string+'f') est de type Objet et le constructeur prend pour arg(chaine de char) !
 	string = string +'!';
