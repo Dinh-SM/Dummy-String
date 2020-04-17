@@ -4,7 +4,17 @@
 // with "Hello World" as content
 OurString::OurString()
 {
+	string_ = new char[12]; 
 	strcpy(string_, "Hello World");
+};
+
+size_t size_(const char* s) const{
+	short i = 0;
+	while(s[i] != '\0'){
+		i++;
+	};
+
+	return i;
 };
 
 
@@ -16,8 +26,12 @@ OurString::OurString(OurString &string)
 {
 	const char* c_string = string.c_str();
 	if((c_string != NULL) && (c_string[0] != '\0')){
+		size_t new_size = size_(c_string);
+		string_ = new char[new_size+1];
 		strcpy(string_, c_string);
 	}else{
+		size_t new_size = size_(c_string);
+		string_ = new char[new_size+1];
 		strcpy(string_, "");
 	};
 };
@@ -58,11 +72,11 @@ OurString& OurString::operator=(char c)
 // c string
 OurString OurString::operator+(const char* s)
 {
-	char new_string[100];
+	size_t new_size = size_(s);
+	char new_string[size()+new_size+1];
 	strcpy(new_string, string_);
 
 	if((s != NULL) && (s[0] != '\0')){
-		
 		short base_size = size();
 		short i = base_size;
 		while(s[i-base_size] != '\0' && size() < 99){
@@ -86,20 +100,16 @@ OurString::OurString(const char* s)
 {
 	if ((s != NULL) && (s[0] != '\0')) //if s non null and it's first character isn't the null terminator
 	{
-		int i = 0;
-		while(s[i] != '\0')
-		{
-			string_[i] = s[i];
-			i++;
-		}	
-		string_[i]='\0';
+		size_t new_size = size_(s);
+		string_ = new char[new_size+1];
+		strcpy(string_, s);
 	}
 	else
 	{
-        strcpy(string_, "");
-    };
+		string_ = new char[1];
+        	strcpy(string_, "");
+	};
 };
-
 
 // Method that returns the size/length of the content in an unsigned integral type size_t
 size_t OurString::length() const
@@ -119,70 +129,62 @@ size_t OurString::length() const
 size_t OurString::max_size() const
 {
 	return 100;
-
 };
 
-void OurString::resize(size_t n, char c)
 /* Method that resizes the string to a length of n characters.
-
 If n is smaller than the current string length, the current value is shortened to its first n character, removing the characters beyond the nth.
-
-If n is greater than the current string length, the current content is extended by inserting at the end as many characters as needed to reach a size of n. If c is specified, the new elements are initialized as copies of c, otherwise, they are value-initialized characters (null characters).
+If n is greater than the current string length, the current content is extended by inserting at the end as many characters as needed to reach a size of n.
+If c is specified, the new elements are initialized as copies of c, otherwise, they are value-initialized characters (null characters).
 */
-
+void OurString::resize(size_t n, char c)
 {
-
-	if (OurString::length() < n)
+	if (length() < n)
 	{
-		size_t i = OurString::length();
-		while(i < n)
-		{		
-			string_[i] = c;
+		char* new_string = new char[n+1];
+		strcpy(new_string, string_);
+		size_t i = length();
+		while(i <= n)
+		{
+			new_string[i] = c;
 			i++;
-		}		
-		string_[i] = '\0'	;
+		}
+		new_string[i] = '\0'	;
+		
+		string_ = new char[n+1];
+		strcpy(string_, new_string);
 	}
 	else
 	{
-		size_t i = n;
-		string_[i] = '\0';
-
+		char* new_string = new char[n+1];
+		strcpy(new_string, string_);
+		new_string[n+1] = '\0';
+		string_ = new char[n+1];
+		strcpy(string_, new_string);
 	}
-
 };
-
-
-
 
 // Operator of assignement: takes the OurString &string as new content and return a new one
 OurString& OurString::operator=(const OurString &string) 
 {
-	
-	strcpy(string_,string.string_); //string_ =/= string.string_ !!
+	size_t new_size = size_(string.string_);
+	string_ = new char[new_size+1];
+	strcpy(string_, string.string_); //string_ =/= string.string_ !!
 	return *this;
-
 };
-
 
 // Operator of concatenation: concatenate the content of our string object with a single character
 OurString OurString::operator+(char c)
-
 {
-	char newc[100];
-	int len = length();
-
+	char newc = new char[length()+2];
 	strcpy(newc, string_);
 	
-	if (len < 100 )
+	if (length()+2 < 100 )
 	{
-		newc[len] = c;
-		newc[len+1] = '\0';
+		newc[length()] = c;
+		newc[length()+1] = '\0';
 	};
 
-	OurString news;
-
-	strcpy(news.string_, newc);
+	OurString news(newc);
+	
 	return news; //renvoie objet OurString news
-
 };
-
