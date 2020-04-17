@@ -2,6 +2,7 @@ class OurString
 {
     public:
         OurString();
+        //TODO: ~OurString();
         size_t size_(const char* s) const;
 
         // Student A
