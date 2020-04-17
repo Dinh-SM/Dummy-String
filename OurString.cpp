@@ -132,6 +132,12 @@ OurString::OurString(const char* s)
 	};
 };
 
+// TODO: Destructor
+//OurString::~OurString()
+//{
+	
+//};
+
 // Method that returns the size/length of the content in an unsigned integral type size_t
 size_t OurString::length() const
 {
