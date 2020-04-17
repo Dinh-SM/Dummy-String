@@ -2,6 +2,7 @@ class OurString
 {
     public:
         OurString();
+        size_t size_(const char* s) const;
 
         // Student A
         OurString(OurString &string);
@@ -20,5 +21,5 @@ class OurString
         OurString operator+(char c);
 
     protected:
-        char *string_;
+        char* string_;
 };
