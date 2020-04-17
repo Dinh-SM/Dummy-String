@@ -87,7 +87,7 @@ OurString& OurString::operator=(char c)
 // c string
 OurString OurString::operator+(const char* s)
 {
-	if((s != NULL) && (s[0] != '\0') && size()+size_(s)+1 <= 100)
+	if((s != NULL) && (s[0] != '\0') && size()+size_(s) <= 100)
 	{
 		size_t new_size = size()+size_(s);
 		char new_string[new_size+1];
@@ -165,28 +165,31 @@ If c is specified, the new elements are initialized as copies of c, otherwise, t
 */
 void OurString::resize(size_t n, char c)
 {
-	if (length() < n)
+	if(n <= 100 && n >= 0)
 	{
-		char* new_string = new char[n+1];
-		strcpy(new_string, string_);
-		size_t i = length();
-		while(i < n)
+		if (length() < n)
 		{
-			new_string[i] = c;
-			i++;
+			char* new_string = new char[n+1];
+			strcpy(new_string, string_);
+			size_t i = length();
+			while(i < n)
+			{
+				new_string[i] = c;
+				i++;
+			}
+			new_string[i] = '\0'	;
+			
+			string_ = new char[n];
+			strcpy(string_, new_string);
 		}
-		new_string[i] = '\0'	;
-		
-		string_ = new char[n];
-		strcpy(string_, new_string);
-	}
-	else
-	{
-		char* new_string = new char[n+1];
-		strcpy(new_string, string_);
-		new_string[n] = '\0';
-		string_ = new char[n+1];
-		strcpy(string_, new_string);
+		else
+		{
+			char* new_string = new char[n+1];
+			strcpy(new_string, string_);
+			new_string[n] = '\0';
+			string_ = new char[n+1];
+			strcpy(string_, new_string);
+		}
 	}
 };
 
@@ -205,7 +208,7 @@ OurString OurString::operator+(char c)
 	char* newc = new char[length()+2];
 	strcpy(newc, string_);
 	
-	if (length()+2 <= 100)
+	if (length()+1 <= 100)
 	{
 		newc[length()] = c;
 		newc[length()+1] = '\0';
