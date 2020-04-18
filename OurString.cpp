@@ -1,11 +1,17 @@
 #include "OurString.h"
+#include<iostream>
 
 // Default constructor that initializes an OurString object
 // with "Hello World" as content
 OurString::OurString()
 {
-	string_ = new char[12]; 
-	strcpy(string_, "Hello World");
+	// Dummy default constructor: working
+	//  string_ = new char[12]; 
+	//  strcpy(string_, "Hello World");
+	
+	// True default constructor
+	string_ = new char[1];
+	string_[0] = '\0';
 };
 
 // Protected method that returns the size of a c string
