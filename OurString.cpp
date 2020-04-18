@@ -210,17 +210,21 @@ OurString& OurString::operator=(const OurString &string)
 
 // Operator of concatenation: concatenate the content of our string object with a single character
 OurString OurString::operator+(char c)
-{
-	char* newc = new char[length()+2];
-	strcpy(newc, string_);
-	
+{	
 	if (length()+1 <= 100)
 	{
+		char* newc = new char[length()+2];
+		strcpy(newc, string_);
+
 		newc[length()] = c;
 		newc[length()+1] = '\0';
-	};
 
-	OurString news(newc);
+		OurString news(newc);
+	
+		return news; //renvoie objet OurString news
+	};
+	
+	OurString news(string_);
 	
 	return news; //renvoie objet OurString news
 };
