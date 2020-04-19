@@ -1,5 +1,4 @@
 #include "OurString.h"
-#include<iostream>
 
 // Default constructor that initializes an OurString object
 // with "Hello World" as content
