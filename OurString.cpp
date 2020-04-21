@@ -201,9 +201,9 @@ void OurString::resize(size_t n, char c)
 // Operator of assignement: takes the OurString &string as new content and return a new one
 OurString& OurString::operator=(const OurString &string) 
 {
-	size_t new_size = size_(string.string_);
+	size_t new_size = string.length();
 	string_ = new char[new_size+1];
-	strcpy(string_, string.string_); //string_ =/= string.string_ !!
+	strcpy(string_, string.c_str()); //string_ =/= string.string_ !!
 	return *this;
 };
 
