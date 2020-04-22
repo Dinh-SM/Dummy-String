@@ -92,7 +92,7 @@ OurString& OurString::operator=(char c)
 // c string
 OurString OurString::operator+(const char* s)
 {
-	if((s != NULL) && (s[0] != '\0') && size()+size_(s) <= 100)
+	if((s != NULL) && (s[0] != '\0') && size()+size_(s) <= max_size())
 	{
 		size_t new_size = size()+size_(s);
 		char new_string[new_size+1];
@@ -170,7 +170,7 @@ If c is specified, the new elements are initialized as copies of c, otherwise, t
 */
 void OurString::resize(size_t n, char c)
 {
-	if(n <= 100 && n >= 0)
+	if(n <= max_size() && n >= 0)
 	{
 		if (length() < n)
 		{
@@ -210,7 +210,7 @@ OurString& OurString::operator=(const OurString &string)
 // Operator of concatenation: concatenate the content of our string object with a single character
 OurString OurString::operator+(char c)
 {	
-	if (length()+1 <= 100)
+	if (length()+1 <= max_size())
 	{
 		char* newc = new char[length()+2];
 		strcpy(newc, string_);
