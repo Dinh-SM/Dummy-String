@@ -202,7 +202,7 @@ OurString& OurString::operator=(const OurString &string)
 {
 	size_t new_size = string.length();
 	string_ = new char[new_size+1];
-	strcpy(string_, string.c_str()); //string_ =/= string.string_ !!
+	strcpy(string_, string.c_str());
 	return *this;
 };
 
