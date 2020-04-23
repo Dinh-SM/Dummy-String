@@ -74,7 +74,9 @@ TEST(GTestTests, PlusCStringTest) {
 	string = string + string3.c_str() + string2.c_str();
 	EXPECT_STREQ(string.c_str(), "Hello WorldHello World");
 
+	//test of an exceeding of the capacity limitation on string which is 100 
 	OurString string4("0101011011010101101101010110110101011011010101101101010110110101011011010101101101010110110101011011");
+	//string4.length() == 100
 	OurString string5("2");
 	string4 = string4 + string5.c_str();
 	EXPECT_STREQ(string4.c_str(), "0101011011010101101101010110110101011011010101101101010110110101011011010101101101010110110101011011");
@@ -112,14 +114,20 @@ TEST(GTestTests, ResizeTest) {
 	OurString string("Hello World");
 	string.resize(5,' ');
 	size_t expected_length = 5;
-	EXPECT_EQ(string.length(), expected_length); //test de la taille attendue
-	EXPECT_STREQ(string.c_str(), "Hello");//Test du raccourci de string
+	EXPECT_EQ(string.length(), expected_length); //test of expected length
+	EXPECT_STREQ(string.c_str(), "Hello");//Test of shortening the string
 
 	OurString string2("Hello World");
 	string2.resize(16,'!');
 	expected_length = 16;
-	EXPECT_EQ(string2.length(), expected_length); //test de la taille attendue
-	EXPECT_STREQ(string2.c_str(), "Hello World!!!!!");//test rallongement de la chaine;
+	EXPECT_EQ(string2.length(), expected_length); //test of expected length
+	EXPECT_STREQ(string2.c_str(), "Hello World!!!!!");//Test of extending the string
+
+	//test of an exceeding of the capacity limitation on string which is 100 
+	OurString string4("0");
+	string4.resize(101, '$');
+	EXPECT_STREQ(string4.c_str(), "0");
+
 };
    
 //Test of OurString::operator=(const OurString &string)
@@ -135,13 +143,28 @@ TEST(GTestTests, EqualOurStringTest){
 	EXPECT_EQ(string2.length(), expected_length);
 
 	EXPECT_STREQ(string2.c_str(), string.c_str());
+
+	//test of an exceeding of the capacity limitation on string which is 100 
+	OurString string4("0101011011010101101101010110110101011011010101101101010110110101011011010101101101010110110101011011");
+	//string4.length() == 100
+	OurString string5("2");
+	string4 = string4 + string5.c_str();
+	EXPECT_STREQ(string4.c_str(), "0101011011010101101101010110110101011011010101101101010110110101011011010101101101010110110101011011");
+
 };
 
 //Test of OurString::operator+(char c)
 // Test of an expected string after the addition of a single char
 TEST(GTestTests, PlusCharTest){
 	OurString string("Hello World");
-	//OurString truc(string + 'f'); // NE MARCHE PAS CAR (string+'f') est de type Objet et le constructeur prend pour arg(chaine de char) !
 	string = string + '!';
 	EXPECT_STREQ(string.c_str(), "Hello World!"); 
+
+	//test of an exceeding of the capacity limitation on string which is 100 
+	OurString string4("0101011011010101101101010110110101011011010101101101010110110101011011010101101101010110110101011011");
+	//string4.length() == 100
+	OurString string5("2");
+	string4 = string4 + string5.c_str();
+	EXPECT_STREQ(string4.c_str(), "0101011011010101101101010110110101011011010101101101010110110101011011010101101101010110110101011011");
+
 };

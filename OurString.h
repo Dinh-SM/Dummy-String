@@ -2,7 +2,7 @@ class OurString
 {
     public:
         OurString();
-        //TODO: ~OurString();
+        ~OurString();
 
         // Student A
         OurString(OurString &string);

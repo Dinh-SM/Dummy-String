@@ -137,11 +137,10 @@ OurString::OurString(const char* s)
 	};
 };
 
-// TODO: Destructor
-//OurString::~OurString()
-//{
-	
-//};
+OurString::~OurString()
+{
+	delete []string_;
+};
 
 // Method that returns the size/length of the content in an unsigned integral type size_t
 size_t OurString::length() const
@@ -182,7 +181,7 @@ void OurString::resize(size_t n, char c)
 				new_string[i] = c;
 				i++;
 			}
-			new_string[i] = '\0'	;
+			new_string[i] = '\0';
 			
 			string_ = new char[n];
 			strcpy(string_, new_string);
@@ -220,10 +219,10 @@ OurString OurString::operator+(char c)
 
 		OurString news(newc);
 	
-		return news; //renvoie objet OurString news
+		return news; //return object OurString news
 	};
 	
 	OurString news(string_);
 	
-	return news; //renvoie objet OurString news
+	return news; //return object OurString news
 };
