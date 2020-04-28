@@ -23,4 +23,5 @@ class OurString
     protected:
         char* string_;
         size_t size_(const char* s) const;
+        char* copy_(char* dest, const char* src);
 };

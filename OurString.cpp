@@ -6,7 +6,7 @@ OurString::OurString()
 {
 	// Dummy default constructor: working
 	//  string_ = new char[12]; 
-	//  strcpy(string_, "Hello World");
+	//  copy_(string_, "Hello World");
 	
 	// True default constructor
 	string_ = new char[1];
@@ -20,9 +20,29 @@ size_t OurString::size_(const char* s) const
 	while(s[i] != '\0')
 	{
 		i++;
-	};
+	}
 
 	return i;
+};
+
+// Protected method that acts like strcpy()
+char* OurString::copy_(char* dest, const char* src)
+{
+	if(dest == NULL) 
+	{
+		return NULL;
+	}
+
+	char* pdest = dest;
+	while(*src != '\0')
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+
+	return pdest;
 };
 
 
@@ -37,13 +57,13 @@ OurString::OurString(OurString &string)
 	{
 		size_t new_size = size_(c_string);
 		string_ = new char[new_size+1];
-		strcpy(string_, c_string);
+		copy_(string_, c_string);
 	}
 	else
 	{
 		string_ = new char[1];
 		string_[0] = '\0';
-	};
+	}
 };
 
 // Method that returns the content as a c string (array of char)
@@ -59,7 +79,7 @@ size_t OurString::size() const
 	while(string_[i] != '\0')
 	{
 		i++;
-	};
+	}
 
 	return i;
 };
@@ -83,7 +103,7 @@ OurString& OurString::operator=(char c)
 	{
 		string_ = new char[1];
 		string_[0] = '\0';
-	};
+	}
 
 	return *this;
 };
@@ -96,7 +116,7 @@ OurString OurString::operator+(const char* s)
 	{
 		size_t new_size = size()+size_(s);
 		char new_string[new_size+1];
-		strcpy(new_string, string_);
+		copy_(new_string, string_);
 		
 		short base_size = size();
 		short i = 0;
@@ -104,13 +124,13 @@ OurString OurString::operator+(const char* s)
 		{
 			new_string[base_size+i] = s[i];
 			i++;
-		};
+		}
 		new_string[base_size+i] = s[i];
 		
 		OurString new_our_string(new_string);
 	
 		return new_our_string;
-	};
+	}
 	
 	OurString new_our_string(*this);
 	
@@ -128,13 +148,13 @@ OurString::OurString(const char* s)
 	{
 		size_t new_size = size_(s);
 		string_ = new char[new_size+1];
-		strcpy(string_, s);
+		copy_(string_, s);
 	}
 	else
 	{
 		string_ = new char[1];
 		string_[0] = '\0';
-	};
+	}
 };
 
 OurString::~OurString()
@@ -174,7 +194,7 @@ void OurString::resize(size_t n, char c)
 		if (length() < n)
 		{
 			char* new_string = new char[n+1];
-			strcpy(new_string, string_);
+			copy_(new_string, string_);
 			size_t i = length();
 			while(i < n)
 			{
@@ -184,15 +204,15 @@ void OurString::resize(size_t n, char c)
 			new_string[i] = '\0';
 			
 			string_ = new char[n];
-			strcpy(string_, new_string);
+			copy_(string_, new_string);
 		}
 		else
 		{
 			char* new_string = new char[n+1];
-			strcpy(new_string, string_);
+			copy_(new_string, string_);
 			new_string[n] = '\0';
 			string_ = new char[n+1];
-			strcpy(string_, new_string);
+			copy_(string_, new_string);
 		}
 	}
 };
@@ -202,7 +222,7 @@ OurString& OurString::operator=(const OurString &string)
 {
 	size_t new_size = string.length();
 	string_ = new char[new_size+1];
-	strcpy(string_, string.c_str());
+	copy_(string_, string.c_str());
 	return *this;
 };
 
@@ -212,7 +232,7 @@ OurString OurString::operator+(char c)
 	if (length()+1 <= max_size())
 	{
 		char* newc = new char[length()+2];
-		strcpy(newc, string_);
+		copy_(newc, string_);
 
 		newc[length()] = c;
 		newc[length()+1] = '\0';
@@ -220,7 +240,7 @@ OurString OurString::operator+(char c)
 		OurString news(newc);
 	
 		return news; //return object OurString news
-	};
+	}
 	
 	OurString news(string_);
 	
